@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Movies App</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+              crossorigin="anonymous"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        </script>
+        <meta name="viewpoint" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="djanjo tutorial"/>
+        <meta name="keywords" content="HTML, CSS, Python"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    {% load static %}
+                    <img src="{% static 'images/movie.png' %}" alt="" width="30" height="24"
+                      class="d-inline-block align-text-top" />
+                    Movies
+                  </a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link" href="{% url 'news' %}">News</a>
+                        {% if user.is_authenticated %}
+                            <a class="nav-link" href="{% url 'logoutaccount' %}">Logout {{ user.username }}
+                            </a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'loginaccount' %}">Login</a>
+                            <a class="nav-link" href="{% url 'signupaccount' %}">Sign Up</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <footer class="text-center text-lg-start bg-light text-muted mt-4">
+            <div class="text-center p-4">
+                Copyright -
+                <a class="text-reset fw-bold text-decoration-none"
+                   target="_blank"
+                   href="https://cityofchicago.live/@rilindo">
+                    Rilindo Foster's Mastodon's account
+                </a> -
+                <a class="text-reset fw-bold text-decoration-none"
+                   target="_blank"
+                   href="https://www.linkedin.com/in/rilindo/">
+                    Rilindo Foster's LinkedIn account
+                </a>
+            </div>
+        </footer>
+    </body>
+</html>
